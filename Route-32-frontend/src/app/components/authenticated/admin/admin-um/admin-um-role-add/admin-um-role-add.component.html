@@ -1,0 +1,146 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora">{{isEdit ? 'Update': 'Add'}} Role</h2>
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Role Information</b></label></div>
+                <div class="col-md-4">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div [formGroup]="roleForm" class="row">
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Role Name</label>
+                    <input class="form-control" type="text" formControlName="name"
+                        [ngClass]="{'is-invalid': this.control['name'].invalid && (this.control['name'].touched || this.control['name'].dirty)}">
+                </div>
+                <div class="col-md-6 form-group p-3"></div>
+                <div class="row justify-content-start p-3" style="display:flex; width:100%;">
+                    <div class="col-md-2"><label for="">List Of Permission</label></div>
+                    <div class="col-md-10"></div>
+                    <div formArrayName="permissions" class="">
+                        <mat-accordion multi>
+                            <mat-expansion-panel *ngIf="usmList.length > 0" class="mat-expansion-class mt-3">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <input class="input-checkbox m-2" type="checkbox" (click)="checkAllCheckbox('usmList', $event)">
+                                        {{ usmList[0].permissionCategory.name }}
+                                    </mat-panel-title>
+                                    <!-- <mat-panel-description>
+                                        <a class="pointer" style="color: red;">(Clear selection)</a>
+                                    </mat-panel-description> -->
+                                </mat-expansion-panel-header>
+
+                                <div class="row theme-color mt-2 mb-2">
+                                    <div *ngFor="let usm of usmList" class="col-md-3 form-group">
+                                        <input class="input-checkbox m-2" type="checkbox" [value]="usm.code"
+                                            (click)="onClick($event, usm.id, usm.code)" [title]="usm.label"
+                                            [checked]="usm.isChecked">
+                                        <label class="form-label" for="">{{ usm.label }} {{ usm.id }}</label>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="tmpList.length > 0" class="mat-expansion-class mt-3">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <input class="input-checkbox m-2" type="checkbox" (click)="checkAllCheckbox('tmpList', $event)">
+                                        {{ tmpList[0].permissionCategory.name }}
+                                    </mat-panel-title>
+                                    <!-- <mat-panel-description>
+                                        <a class="pointer" style="color: red;">(Clear selection)</a>
+                                    </mat-panel-description> -->
+                                </mat-expansion-panel-header>
+
+                                <div class="row theme-color mt-2 mb-2">
+                                    <div *ngFor="let tmp of tmpList" class="col-md-3 form-group">
+                                        <input class="input-checkbox m-2" type="checkbox" [value]="tmp.code"
+                                            (click)="onClick($event, tmp.id, tmp.code)" [title]="tmp.label"
+                                            [checked]="tmp.isChecked">
+                                        <label class="form-label" for="">{{ tmp.label }}</label>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="onbList.length > 0" class="mat-expansion-class mt-3">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <input class="input-checkbox m-2" type="checkbox" (click)="checkAllCheckbox('onbList', $event)">
+                                        {{ onbList[0].permissionCategory.name }}
+                                    </mat-panel-title>
+                                    <!-- <mat-panel-description>
+                                        <a class="pointer" style="color: red;">(Clear selection)</a>
+                                    </mat-panel-description> -->
+                                </mat-expansion-panel-header>
+
+                                <div class="row theme-color mt-2 mb-2">
+                                    <div *ngFor="let onb of onbList" class="col-md-3 form-group">
+                                        <input class="input-checkbox m-2" type="checkbox" [value]="onb.code"
+                                            (click)="onClick($event, onb.id, onb.code)" [title]="onb.label"
+                                            [checked]="onb.isChecked">
+                                        <label class="form-label" for="">{{ onb.label }}</label>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="mstList.length > 0" class="mat-expansion-class mt-3">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <input class="input-checkbox m-2" type="checkbox" (click)="checkAllCheckbox('mstList', $event)">
+                                        {{ mstList[0].permissionCategory.name }}
+                                    </mat-panel-title>
+                                    <!-- <mat-panel-description>
+                                        <a class="pointer" style="color: red;">(Clear selection)</a>
+                                    </mat-panel-description> -->
+                                </mat-expansion-panel-header>
+
+                                <div class="row theme-color mt-2 mb-2">
+                                    <div *ngFor="let mst of mstList" class="col-md-3 form-group">
+                                        <input class="input-checkbox m-2" type="checkbox" [value]="mst.code"
+                                            (click)="onClick($event, mst.id, mst.code)" [title]="mst.label"
+                                            [checked]="mst.isChecked">
+                                        <label class="form-label" for="">{{ mst.label }}</label>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="invList.length > 0" class="mat-expansion-class mt-3">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        <input class="input-checkbox m-2" type="checkbox" (click)="checkAllCheckbox('invList', $event)">
+                                        {{ invList[0].permissionCategory.name }}
+                                    </mat-panel-title>
+                                    <!-- <mat-panel-description>
+                                        <a class="pointer" style="color: red;">(Clear selection)</a>
+                                    </mat-panel-description> -->
+                                </mat-expansion-panel-header>
+
+                                <div class="row theme-color mt-2 mb-2">
+                                    <div *ngFor="let inv of invList" class="col-md-3 form-group">
+                                        <!-- <input class="input-checkbox m-2" type="checkbox"> -->
+                                        <input class="input-checkbox m-2" type="checkbox" [value]="inv.code"
+                                            (click)="onClick($event, inv.id, inv.code)" [title]="inv.label"
+                                            [checked]="inv.isChecked">
+                                        <label class="form-label" for="">{{ inv.label }}</label>
+                                    </div>
+                                </div>
+                            </mat-expansion-panel>
+
+                        </mat-accordion>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 p-3">
+                            <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                        </div>
+                        <div class="col-md-6 p-3">
+                            <button class="submit-btn" (click)="submit()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

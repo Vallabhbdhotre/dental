@@ -1,0 +1,62 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora" *ngIf="!isView">{{isEdit ? 'Update': 'Add'}} User</h2>
+    <h2 class="font-lora" *ngIf="isView">View User</h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+            <div class="row">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">User Information</b></label></div>
+                <div *ngIf="!isEdit" class="col-md-2">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+            <div [formGroup]="userForm" class="row">
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">First Name</label>
+                    <input class="form-control" type="text" placeholder="Enter First Name" formControlName="firstName"
+                        [ngClass]="{'is-invalid': this.control['firstName'].invalid && (this.control['firstName'].touched || this.control['firstName'].dirty)}">
+                </div>
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Last Name</label>
+                    <input class="form-control" type="text" placeholder="Enter Last Name" formControlName="lastName"
+                        [ngClass]="{'is-invalid': this.control['lastName'].invalid && (this.control['lastName'].touched || this.control['lastName'].dirty)}">
+                </div>
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Email ID</label>
+                    <input class="form-control" type="email" placeholder="Enter Email ID" formControlName="emailId"
+                        [ngClass]="{'is-invalid': this.control['emailId'].invalid && (this.control['emailId'].touched || this.control['emailId'].dirty)}">
+                </div>
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Phone Number</label>
+                    <input class="form-control" type="number" placeholder="Enter Phone No"
+                        formControlName="contactNumber"
+                        [ngClass]="{'is-invalid': this.control['contactNumber'].invalid && (this.control['contactNumber'].touched || this.control['contactNumber'].dirty)}">
+                </div>
+                <div *ngIf="!isEdit" class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Password</label>
+                    <input class="form-control" type="password" placeholder="Enter Password" formControlName="password"
+                        [ngClass]="{'is-invalid': this.control['lastName'].invalid && (this.control['lastName'].touched || this.control['lastName'].dirty)}">
+                </div>
+                <div formArrayName="roles" class="col-md-6 form-group p-3">
+                    <div *ngFor="let role of rolesArray.controls; index as i" [formGroupName]="i">
+                        <label class="form-label" for="">Roles</label>
+                        <mat-select formControlName="id" class="form-control" placeholder="Assign Roles"
+                        [ngClass]="{'is-invalid': this.control['roles'].invalid && (this.control['roles'].touched || this.control['roles'].dirty)}">
+                            <mat-option *ngFor="let role of roleList" [value]="role.id">
+                                {{ role.name }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div *ngIf="!isView" class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

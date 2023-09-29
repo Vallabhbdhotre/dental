@@ -1,0 +1,51 @@
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.center-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    height: 48px !important;
+}
+
+.input-icon-left {
+    padding: inherit !important;
+}
+
+.pointer {
+    font-family: Roboto !important;
+}

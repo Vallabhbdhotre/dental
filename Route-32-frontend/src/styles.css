@@ -1,0 +1,687 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+input {
+    border-radius: 30px 30px 30px 30px;
+}
+
+
+You can add global styles to this file,
+and also import other style files .split-container {
+    display: flex;
+    height: 100vh;
+    /* Adjust as needed */
+    width: 100%;
+}
+
+.left-panel,
+.right-panel {
+    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.right-panel {
+    flex-basis: 60%;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.split-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.left-panel,
+.right-panel {
+    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.left-panel {
+    flex-basis: 40%;
+    background-color: white;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    max-width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.font-robot {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    color: #1A202C;
+    text-align: center;
+    font-size: 22px;
+}
+
+.font-lora {
+    color: #171923;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: normal;
+}
+
+.font-lora-small {
+    color: #171923;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: normal;
+}
+
+
+.login-btn {
+    width: calc(100%);
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #C1272D;
+    color: white;
+    box-shadow: 2px 18px 40px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: #FAF9F9;
+    border: 0px;
+    font-family: Roboto;
+}
+
+/* .theme-btn {
+    width: calc(100%);
+    height: inherit;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #C1272D;
+    color: white;
+    box-shadow: 2px 18px 40px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: #FAF9F9;
+}
+
+.theme-btn i {
+    padding: 0.25rem 0.25rem 0.25rem 0;
+}
+
+.theme-btn .btn-text {
+    color: #FFF;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+} */
+
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    background-color: #C1272D;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+
+
+.theme-input {
+    /* width: 425px;
+    height: 48px; */
+    height: 10%;
+    color: #939FB4;
+}
+
+
+
+
+.h1-roboto {
+    color: #1A202C;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    font-size: 22px;
+}
+
+.h2-roboto {
+    color: #000;
+    font-family: Roboto;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.h1-lora {
+    color: #171923;
+    font-family: Lora;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: normal;
+}
+
+.fixed-card {
+    position: fixed;
+    max-height: inherit;
+    max-width: inherit;
+    overflow: hidden;
+}
+
+.card-content {
+    overflow: auto;
+    position: relative;
+    max-width: inherit;
+    height: 27rem;
+}
+
+
+.theme-color {
+    height: 100%;
+    background-image: url('../src/assets/images/backgroundImage.png');
+    background-repeat: no-repeat;
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+
+.search-page-section {
+    display: flex;
+}
+
+
+.search-input {
+    border-radius: 6px;
+    background: #FFF;
+    box-shadow: -2px -2px 4px 0px rgba(0, 0, 0, 0.02), 2px 2px 4px 0px rgba(0, 0, 0, 0.10);
+    width: 100%;
+    height: 48px;
+    flex-shrink: 0;
+}
+
+
+.input-container {
+    width: inherit;
+    margin-top: 8px;
+    /* margin: 8px auto; */
+    position: relative;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    background: #FFF;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.input-container span {
+    position: absolute;
+    margin: 8px 0;
+    top: 5px;
+    left: 90%;
+}
+
+
+.add-btn {
+    width: inherit;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #C1272D;
+    color: white;
+    border: 0px;
+}
+
+
+
+::-webkit-scrollbar {
+    width: 14px;
+    height: auto;
+    background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #C1272D;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 0px;
+    background: #C1272D;
+    width: 100%;
+    color: #FFF;
+    font-family: Lora;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.cancel-btn {
+    width: 100%;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid #C1272D;
+    background: inherit;
+    color: #C1272D;
+    text-align: center;
+    font-family: Lora;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+/* Custome Table Screen CSS */
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    height: calc(100vh - 18.5rem);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.gap th {
+    height: 50px;
+    align-items: center;
+    padding-bottom: 13px;
+}
+
+.gap td {
+    height: 40px;
+    align-items: center;
+}
+
+.sticky {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    margin: 0;
+}
+
+.sticky .red {
+    color: #C1272D;
+}
+
+.gap {
+    border-collapse: separate;
+    border-spacing: 0 4px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.gap tr:hover {
+    border-radius: 20px;
+    box-shadow: 1rem 0 0.25rem 0 #8690a3;
+}
+
+.action-column {
+    display: none;
+}
+
+.gap tr:hover .action-column {
+    display: block;
+    opacity: 1;
+}
+
+.last-column {
+    width: 15%
+}
+
+.gap tr:hover .last-column {
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: none;
+}
+
+td>span {
+    padding-right: 5px;
+    font-size: 22px;
+}
+
+.paginator-height {
+    height: inherit;
+}
+
+
+.form-container {
+    max-width: 100%;
+    overflow-x: auto;
+    height: calc(100vh - 10.5rem);
+}
+
+input {
+    border-radius: 10px !important;
+}
+
+
+/* Pre Login Css  */
+
+
+.pre-login-body {
+    height: auto;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.pre-login-left-body {
+    flex-direction: column;
+    float: left;
+    min-width: 40%;
+    max-width: 40%;
+    height: 100vh;
+    background-color: white;
+}
+
+.pre-login-right-body {
+    flex-direction: column;
+    float: right;
+    min-width: 60%;
+    max-width: 60%;
+    height: 100vh;
+    background-color: #FAF9F9;
+}
+
+.image-container {
+    padding-top: calc(100vh - 90vh);
+}
+
+.image-container-login {
+    padding-top: calc(100vh - 82vh);
+}
+
+.prelogin-form-container {
+    padding-top: calc(100vh - 85vh);
+}
+
+/* for default laptop */
+.custome-padding {
+    padding: 2rem 10rem 2rem 10rem;
+}
+
+
+.back-btn-pre-login-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background: #FFE7E7;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    top: 20px;
+    left: 20px;
+    position: sticky;
+    cursor: pointer;
+}
+
+.back-btn-pre-login-left>span {
+    margin-left: 10px;
+}
+
+
+.back-btn-pre-login-right {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background: #FFE7E7;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    top: 20px;
+    left: 20px;
+    position: sticky;
+    cursor: pointer;
+}
+
+.back-btn-pre-login-right>span {
+    margin-left: 10px;
+}
+
+
+
+@media screen and (max-width: 1920px) {
+    .custome-padding {
+        padding: 2rem 8rem 2rem 8rem;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .custome-padding {
+        padding: 2rem 8rem 2rem 8rem;
+    }
+
+    .back-btn-pre-login-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .pre-login-left-body {
+        display: none;
+    }
+
+    .back-btn-pre-login-right {
+        display: flex;
+    }
+
+    .pre-login-right-body {
+        flex-direction: column;
+        float: right;
+        min-width: 100%;
+        max-width: 100%;
+        height: 100vh;
+        background-color: #FAF9F9;
+    }
+
+    .custome-padding {
+        padding: 2rem 7rem 2rem 7rem;
+    }
+}
+
+/* for mobile devices */
+@media screen and (max-width: 450px) {
+    .custome-padding {
+        padding: 2rem 2rem 2rem 2rem;
+    }
+
+
+    .font-lora-small {
+        color: #171923;
+        font-family: Roboto;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: normal;
+    }
+
+}
+
+@media screen and (max-width: 660px) {
+
+    .add-button {
+        font-size: 0;
+    }
+
+    .add-button i {
+        margin-right: 0;
+    }
+}
+
+
+/* All CSS Related icons inside input left right */
+
+.icon-margin-invalid-input {
+    margin-right: 1.2rem
+}
+
+.icon-input-left {
+    position: relative;
+}
+
+.icon-input-left .form-control {
+    padding-left: 40px;
+}
+
+.icon-input-left .input-icon-left {
+    font-family: "Material Icons";
+    position: absolute;
+    left: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+
+.icon-input-left .input-icon-left i {
+    font-size: 1.25rem;
+    color: black;
+}
+
+.icon-input-right {
+    position: relative;
+}
+
+.icon-input-right .form-control {
+    padding-right: 40px;
+}
+
+.icon-input-right .input-icon-right {
+    font-family: "Material Icons";
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    padding: inherit !important;
+}
+
+
+.icon-input-right .input-icon-right i {
+    font-size: 1.25rem;
+    color: #939FB4;
+}
+
+/* Search Box Css Every Listing Page */
+
+.icon-input-search {
+    position: relative;
+}
+
+.icon-input-search .form-control {
+    padding-right: 40px;
+}
+
+.icon-input-search .input-icon-search {
+    font-family: "Material Icons";
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+
+
+.icon-input-search .input-icon-search i {
+    font-size: 1.5rem;
+    color: #939FB4;
+}
+
+/* Mat Paginator css */
+
+.mat-mdc-paginator-container {
+    padding: 0px !important;
+}
+
+.mat-mdc-paginator-range-label {
+    margin: 0px !important;
+}
+
+.mat-expansion-class {
+    border-radius: 6px;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.input-checkbox {
+    width: 20px;
+    height: 20px;
+}
+.form-control{
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
+.red {
+    color: #C1272D;
+}

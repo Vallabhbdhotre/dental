@@ -1,0 +1,60 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora">{{isEdit ? 'Update': 'Add'}} category</h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Category Information</b></label></div>
+                <div class="col-md-4">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div [formGroup]="categoryForm" class="row">
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Name</label>
+                    <input class="form-control" type="text" placeholder="Enter Name" formControlName="name"
+                        [ngClass]="{'is-invalid': this.control['name'].invalid && (this.control['name'].touched || this.control['name'].dirty)}">
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Description</label>
+                    <input class="form-control" type="text" placeholder="Enter Description"
+                        formControlName="description"
+                        [ngClass]="{'is-invalid': this.control['description'].invalid && (this.control['description'].touched || this.control['description'].dirty)}">
+                </div>
+
+                <div class="col-md-12 form-group p-3">
+                    <label class="form-label" for="">Upload Image</label>
+                    <div class="row">
+                        <div class="card col-md-3 text-center justify-content-center file-selector m-1"
+                            (click)="openFileInput()" title="Upload New">
+                            <label class="form-label click-upload" for="">Click to upload</label>
+                            <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)"
+                                type="file" accept=".png, .jpg">
+                        </div>
+
+                        <div *ngIf="base != null"
+                            class="card col-md-3 text-center justify-content-center file-selector m-1">
+                            <img style="height: 110px; width: 135px;" [src]="base" alt="Selected Image" [title]="">
+                            <span class="close-icon" (click)="closeImage()">&times;</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+    <div class="page-header">
+        <h2>Integration Settings Table</h2>
+    </div>
+
+    <div class="card">  
+        <div class="search-page-section p-2">
+            <div class="input-container">
+                <input type="text" name="search" id="search" class="form-control theme-input"
+                    placeholder="Search Record" style="height: 48px" />
+                <span class="material-symbols-outlined pointer">search</span>
+            </div>
+            <div class="col-md-4"></div>
+            <!-- <button class="add-btn mt-2" type="submit" [routerLink]="['/admin/um/user-add']" routerLinkActive="true">
+                <i class="fa fa-plus">Add User</i>
+            </button> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <div class="paginator-height">
+                <mat-paginator style="border-radius: 8px; background-color: inherit" [length]="total"
+                    showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="gap table">
+            <thead>
+                <tr class="sticky">
+                    <th class="red" *ngFor="let column of displayedColumns">{{ column }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of masterTableList">
+                    <td>{{ row.type }}</td>
+                    <td class="">{{ row.updatedDate | date: 'dd-MM-yy' }}</td>
+                    <td>
+                        <span class="material-symbols-outlined" [routerLink]="['/admin/master/edit/', row.type]"> edit </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

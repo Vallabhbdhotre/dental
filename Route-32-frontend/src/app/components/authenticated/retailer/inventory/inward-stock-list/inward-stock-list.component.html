@@ -1,0 +1,56 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+    <div class="page-header">
+        <h2 class="font-lora">Inward Stock List</h2>
+    </div>
+
+    <div class="card">
+        <div class="search-page-section p-3">
+            <div class="col-md-6 p-1">
+                <div class="icon-input-search">
+                    <span class="input-icon-search">
+                        <i class="material-icons">search</i>
+                    </span>
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Search Request" />
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <div class="paginator-height">
+                <mat-paginator style="border-radius: 8px; background-color: inherit" [length]="total"
+                    showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="gap table">
+            <thead>
+                <tr class="sticky">
+                    <th class="red" *ngFor="let column of displayedColumns">{{ column }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="" *ngFor="let row of inwardList">
+                    <td>{{ row.adminCase.caseCode }}</td>
+                    <td>
+                        <label *ngFor="let data of row.adminStockOutward.data; let i = index; let l = last">
+                            {{ data.product.name }}
+                            <!-- <span *ngIf="!l"></span> -->
+                        </label>
+                    </td>
+                    <td>
+                        <label *ngFor="let data of row.adminStockOutward.data; let i = index; let l = last">
+                            {{ data.productBarcodes.length }}
+                        </label>
+                    </td>
+                    <td>{{ row.createdBy.emailId }}</td>
+                    <td class="last-column">{{ row.createdDate | date: 'dd-MM-yy' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

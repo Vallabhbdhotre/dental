@@ -1,0 +1,35 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora">{{isEdit ? 'Update': 'Add'}} UOM </h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Information</b></label></div>
+                <div class="col-md-2">
+                    (<a class="red pointer " (click)="clearForm()">Clear form</a>)
+                </div>
+            </div>
+
+
+            <div [formGroup]="uomForm" class="row mt-2">
+                <div class="col-md-6 form-group">
+                    <label class="form-label" for="">Name</label>
+                    <input class="form-control" type="text" formControlName="name"
+                        [ngClass]="{'is-invalid': this.control['name'].invalid && (this.control['name'].touched || this.control['name'].dirty)}">
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+  <div class="page-header">
+    <h2 class="font-lora">List of Retailers</h2>
+  </div>
+
+  <div class="card">
+    <div class="search-page-section p-3">
+      <div class="col-md-6 p-1">
+        <div class="icon-input-search">
+          <span class="input-icon-search">
+            <i class="material-icons">search</i>
+          </span>
+          <input
+            type="text"
+            name="search"
+            id="search"
+            class="form-control"
+            placeholder="Search Retailers"
+          />
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button
+          class="add-button"
+          type="submit"
+          [routerLink]="['/admin/onboarding/retailer-add']"
+        >
+          <i class="material-icons">add</i>
+          Add Retailer
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="paginator-height">
+        <mat-paginator
+          style="background-color: inherit"
+          [length]="100"
+          showFirstLastButtons="true"
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="gap table">
+      <thead>
+        <tr class="sticky">
+          <th class="red" *ngFor="let column of displayedColumns">
+            {{ column }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="" *ngFor="let row of retailerList">
+          <td>
+            <ng-toggle [color]="{unchecked: 'grey',checked: 'green'}" [(ngModel)]="row.isActive"
+              (change)="retailerStatusChange(row.id, row.isActive)" [height]="16" [width]="28">
+            </ng-toggle>
+          </td>
+          <td>
+            {{ row.pocFirstName }}
+          </td>
+          <td>{{ row.pocLastName }}</td>
+          <td class="">{{ row.mobileNumber }}</td>
+          <td class="">{{ row.emailId }}</td>
+          <td class="last-column">{{ row.businessName }}</td>
+          <td class="action-column">
+            <span class="material-symbols-outlined" (click)="deleteRetailerById(row.id)"> delete </span>
+            <span
+              class="material-symbols-outlined"
+              [routerLink]="['/admin/onboarding/retailer-view', row.id]"
+            >
+              visibility
+            </span>
+            <span
+              class="material-symbols-outlined"
+              [routerLink]="['/admin/onboarding/retailer-edit', row.id]"
+            >
+              edit
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

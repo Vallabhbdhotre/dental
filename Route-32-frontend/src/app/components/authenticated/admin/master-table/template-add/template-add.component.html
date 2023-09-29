@@ -1,0 +1,29 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2>{{isEdit ? 'Update': 'View'}} Template</h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start pb-3" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Template Code : {{ templateObj?.templateCode }}</b></label></div>
+                <div class="col-md-4" *ngIf="!isView">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div style="background-color: white; border-radius: 15px;" [formGroup]="templateForm" class="row p-3">
+                <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [disabled]="isView"> </ngx-editor-menu>
+                <ngx-editor [editor]="editor" formControlName="templateValue" [disabled]="isView"> </ngx-editor>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div *ngIf="!isView" class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

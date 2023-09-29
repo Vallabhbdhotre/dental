@@ -1,0 +1,41 @@
+<div class="navbar">
+  <div class="nav-logo">
+    <img src="../../../../../assets/images/logo.png" alt="" />
+  </div>
+  <div class="nav-user pointer">
+    <div class="nav-alert">
+      <span class="material-symbols-outlined"> notifications </span>
+    </div>
+    <div
+      class="nav-icon"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-expanded="false"
+    >
+      <div class="user-circle">
+        <span class="material-symbols-outlined"> person </span>
+      </div>
+    </div>
+    <div
+      class="nav-name"
+      data-bs-toggle="dropdown"
+      data-bs-display="static"
+      aria-expanded="false"
+    >
+      <div class="nav-name">
+        <span class="nav-user-name"
+          >{{ userData?.userFirstName }} {{ userData?.userLastName }}</span
+        >
+        <br />
+        <span class="nav-user-role">User Role</span>
+      </div>
+
+      <div class="dropdown-menu">
+        <button class="dropdown-item" type="button">Profile</button>
+        <button class="dropdown-item" type="button">Change Password</button>
+        <button class="dropdown-item" type="button" (click)="logout()" >Logout</button>
+      </div>
+
+    </div>
+  </div>
+</div>

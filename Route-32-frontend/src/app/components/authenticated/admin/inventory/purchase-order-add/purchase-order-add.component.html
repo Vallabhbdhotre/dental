@@ -1,0 +1,95 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora">{{isView ? 'View': 'Add'}} Purchase Order</h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">PO Information</b></label></div>
+                <div *ngIf="!isView" class="col-md-4">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div [formGroup]="poForm" class="row">
+                <div formGroupName="manufacturer" class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Manufacturer</label>
+                    <mat-select class="form-control" formControlName="id"
+                        [ngClass]="{'is-invalid': this.control['manufacturer'].invalid && (this.control['manufacturer'].touched || this.control['manufacturer'].dirty)}">
+                        <mat-option *ngFor="let manu of manufacturerList" [value]="manu.id">
+                            {{ manu.businessName }}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Expected Delivery Date</label>
+                    <input class="form-control" type="date" formControlName="expectedDelivery"
+                        [ngClass]="{'is-invalid': this.control['expectedDelivery'].invalid && (this.control['expectedDelivery'].touched || this.control['expectedDelivery'].dirty)}">
+                </div>
+
+                <div class="col-md-12 form-group p-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            Product Name
+                        </div>
+                        <div class="col-md-3">
+                            Quantity
+                        </div>
+                    </div>
+
+                    <div formArrayName="poData" class="row" style="background: rgba(229, 229, 229, 0.45);">
+                        <div class="row" *ngFor="let po of poDataArray.controls; let i=index" [formGroupName]="i">
+                            <div formGroupName="product" class="col-md-3 p-3">
+                                <mat-select (selectionChange)="onSelectionChange(i)" formControlName="id" class="form-control" multiple="false"
+                                    [ngClass]="{'is-invalid': po.get('product')?.invalid && (this.poDataArray.at(i).get('product')?.touched || this.poDataArray.at(i).get('product')?.dirty )}">
+                                    <mat-option *ngFor="let product of productList" [value]="product.id">
+                                        {{ product.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </div>
+
+                            <div class="col-md-3 p-3">
+                                <input formControlName="quantity" class="form-control" type="number" 
+                                [ngClass]="{'is-invalid': po.get('quantity')?.invalid && (this.poDataArray.at(i).get('quantity')?.touched || this.poDataArray.at(i).get('quantity')?.dirty )}">
+                            </div>
+
+                            <div class="col-md-3 p-3"></div>
+
+                            <div *ngIf="poDataArray.length > 1 && !isView" class="col-md-3 p-3">
+                                <span class="material-symbols-outlined" (click)="deletePO(i)"> delete </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div *ngIf="!isView" class="col-md-3">
+                    <button [disabled]="poDataArray.invalid" class="add-button" type="submit" (click)="addPoData()">
+                        <i class="material-icons">add</i>
+                        Add another row
+                    </button>
+                </div>
+
+                <div class="col-md-9"></div>
+
+                <div class="col-md-6 form-group mt-3">
+                    <label class="form-label" for="">Add note</label>
+                    <textarea class="form-control" formControlName="instructions" cols="70" rows="4"></textarea>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div *ngIf="!isView" class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="createPO()">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+  <div class="page-header">
+    <h2 class="font-lora">List of Roles</h2>
+  </div>
+  <div class="card">
+    <div class="search-page-section p-3">
+      <div class="col-md-6 p-1">
+        <div class="icon-input-search">
+          <span class="input-icon-search">
+            <i class="material-icons">search</i>
+          </span>
+          <input type="text" name="search" id="search" class="form-control" placeholder="Search Roles" />
+        </div>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <button class="add-button" type="submit" [routerLink]="['/retailer/um/role-add']">
+          <i class="material-icons">add</i>
+          Add Role
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="display: flex;justify-content: end;">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      <div class="paginator-height">
+        <mat-paginator style="border-radius: 8px; background-color: inherit" [length]="total" showFirstLastButtons
+          [pageSizeOptions]="[10, 25, 100]" (page)="onPageChange($event)">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="gap table">
+      <thead>
+        <tr class="sticky">
+          <th class="red" *ngFor="let column of displayedColumns">{{ column }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of roleList">
+          <td>
+            <ng-toggle [color]="{unchecked: 'grey',checked: 'green'}" [(ngModel)]="row.enabled"
+              (change)="disableRole(row.id, row.enabled)" [height]="16" [width]="28">
+            </ng-toggle>
+          </td>
+          <td>
+            {{ row.name }}
+          </td>
+          <td>{{ row.createdBy?.emailId }}</td>
+          <td class="last-column">{{ row.createdDate | date: 'dd-MM-yy' }}</td>
+          <td class="action-column">
+            <span class="material-symbols-outlined" (click)="deleteRoleById(row.id)"> delete </span>
+            <span class="material-symbols-outlined"> visibility </span>
+            <span class="material-symbols-outlined" [routerLink]="['/retailer/um/role-edit/', row.id]"> edit </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

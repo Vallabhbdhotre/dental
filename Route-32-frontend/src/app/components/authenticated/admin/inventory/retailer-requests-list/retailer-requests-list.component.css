@@ -1,0 +1,25 @@
+select {
+    border-radius: 8px;
+    padding: 0 0 0 10px ;
+}
+
+select>option {
+    background-color: white;
+}
+
+select.status-green {
+    background-color: rgba(164, 255, 167, 0.30);
+    ;
+}
+
+select.status-red {
+    background-color: #F8BDBD;
+}
+
+select.status-yellow {
+    background-color: rgba(254, 107, 0, 0.30);
+}
+
+.form-select{
+    width: 70%;
+}

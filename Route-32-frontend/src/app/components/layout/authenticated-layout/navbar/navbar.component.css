@@ -1,0 +1,81 @@
+.navbar {
+    width: calc(100% - 1rem - 1rem);
+    height: 4.5rem;
+    background: #ffffff;
+    margin-left: 1rem;
+    z-index: 10;
+    position: fixed;
+    top: 1rem;
+    transition: all .5s ease;
+    padding: 15px;
+    box-shadow: 0.063rem 0 0.25rem 0 #8690a3;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-logo {
+    padding-bottom: 15px;
+}
+
+.nav-user {
+    display: flex;
+    gap: 1rem;
+    padding-bottom: 10px;
+}
+
+.nav-alert {
+    padding-top: 10px;
+}
+
+.nav-name {
+    font-size: 0;
+}
+
+.nav-user-name {
+    font-weight: 800;
+    font-size: large;
+}
+
+.nav-user-role {
+    font-size: small;
+}
+
+.user-circle {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    background-color: #FFC6C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.body-trimmed {
+    width: calc(100% - 16.5625rem);
+    margin-left: 16.5625rem;
+}
+
+.body-md-screen {
+    width: calc(100% - 5rem);
+    margin-left: 5rem;
+}
+
+.dropdown-menu {
+    margin-top: 0.5rem;
+    margin-left: calc(100vw - 13.5rem);
+}
+
+.dropdown-item:hover {
+    background-color: transparent;
+}
+
+div>button:hover {
+    background-color: #F3F3F3;
+}
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}

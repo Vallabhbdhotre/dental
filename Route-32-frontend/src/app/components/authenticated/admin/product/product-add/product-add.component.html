@@ -1,0 +1,139 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora" *ngIf="!isView">{{isEdit ? 'Update': 'Add'}} Product</h2>
+    <h2 class="font-lora" *ngIf="isView">View Product</h2>
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Product Information</b></label></div>
+                <div class="col-md-4">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div [formGroup]="productForm" class="row">
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Name</label>
+                    <input class="form-control" type="text" placeholder="Enter Product Name" formControlName="name"
+                        [ngClass]="{'is-invalid': this.control['name'].invalid && (this.control['name'].touched || this.control['name'].dirty)}">
+                </div>
+
+                <div class="col-md-3 form-group p-3">
+                    <label class="form-label" for="">Weight</label>
+                    <input class="form-control" type="number" placeholder="Enter Weight" formControlName="weight"
+                        [ngClass]="{'is-invalid': this.control['weight'].invalid && (this.control['weight'].touched || this.control['weight'].dirty)}">
+                </div>
+
+                <div class="col-md-3 form-group p-3" formGroupName="uom">
+                    <label class="form-label" for="">UOM</label>
+                    <mat-select class="form-control" formControlName="id"
+                        [ngClass]="{'is-invalid': this.control['uom'].invalid && (this.control['uom'].touched || this.control['uom'].dirty)}">
+                        <mat-option *ngFor="let uom of uomList" [value]="uom.id">
+                            {{ uom.name }}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Highlight Text</label>
+                    <input class="form-control" type="text" placeholder="Enter HighlightText"
+                        formControlName="highlightText">
+                </div>
+
+                <div class="col-md-2 form-group p-3">
+                    <label class="form-label" for="">Regular Price</label>
+                    <input class="form-control" type="number" placeholder="Enter Regular Price"
+                        formControlName="regularPrice"
+                        [ngClass]="{'is-invalid': this.control['regularPrice'].invalid && (this.control['regularPrice'].touched || this.control['regularPrice'].dirty)}">
+                </div>
+
+                <div class="col-md-2 form-group p-3">
+                    <label class="form-label" for="">Discount</label>
+                    <input class="form-control" type="number" placeholder="Enter Discount" formControlName="discount">
+                </div>
+
+                <div class="col-md-2 form-group p-3">
+                    <label class="form-label" for="">Sale Price</label>
+                    <input class="form-control" type="number" placeholder="Enter Sale Price" formControlName="salePrice"
+                        [ngClass]="{'is-invalid': this.control['salePrice'].invalid && (this.control['salePrice'].touched || this.control['salePrice'].dirty)}">
+                </div>
+
+                <div class="col-md-6 form-group p-3" formGroupName="category">
+                    <label class="form-label" for="">Category</label>
+                    <mat-select class="form-control" formControlName="id"
+                        [ngClass]="{'is-invalid': this.control['category'].invalid && (this.control['category'].touched || this.control['category'].dirty)}">
+                        <mat-option *ngFor="let category of categoryList" [value]="category.id">
+                            {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Description</label>
+                    <textarea class="form-control" name="" id="" rows="1" formControlName="description"
+                        [ngClass]="{'is-invalid': this.control['description'].invalid && (this.control['description'].touched || this.control['description'].dirty)}">
+                    </textarea>
+                </div>
+
+                <!-- IMAGES, VIDEOS -->
+                <div class="col-md-12 form-group p-3" formArrayName="images">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label" for="">Add product's images</label>
+                        </div>
+                    </div>
+                    <div class="row p-3 form-group">
+                        <div class="card col-md-3 text-center justify-content-center file-selector m-1"
+                            (click)="openFileInput()">
+                            <label class="form-label click-upload" for="">Click to upload</label>
+                            <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)"
+                                type="file" accept=".png, .jpg, .mp4" multiple>
+                        </div>
+
+                        <ng-container class="" *ngIf="!isEdit">
+                            <div class="card col-md-3 text-center justify-content-center file-selector m-1"
+                                *ngFor="let file of uploadedFiles; let i = index; let l = last">
+                                <ng-container class="" *ngIf="file.type.includes('image')">
+                                    <img [src]="file.url" alt="Image" class="" [title]="file.type"
+                                        style="height: 100px; width: 130px;">
+                                    {{file.type}}
+                                </ng-container>
+                                <ng-container class="" *ngIf="file.type.includes('video')">
+                                    <video [src]="file.url" [title]="file.type" style="height: 100px; width: 130px;">
+                                    </video>
+                                    {{file.type}}
+                                </ng-container>
+                                <span class="close-icon" (click)="closeImage(i, file.id)">&times;</span>
+                            </div>
+                        </ng-container>
+
+                        <ng-container *ngIf="isEdit">
+                            <div class="card col-md-3 text-center justify-content-center file-selector m-1"
+                                *ngFor="let file of uploadedFiles; let i = index; let l = last">
+                                <ng-container *ngIf="file.url.includes('.mp4'); else imageContianer">
+                                    <video [src]="file.url" style="height: 100px; width: 130px;">
+                                    </video>
+                                    {{file.type}}
+                                </ng-container>
+                                <ng-template #imageContianer>
+                                    <img [src]="file.url" alt="Image" class="" style="height: 100px; width: 130px;">
+                                    {{file.type}}
+                                </ng-template>
+                                <span class="close-icon" (click)="closeImage(i, file.id)">&times;</span>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div *ngIf="!isView" class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

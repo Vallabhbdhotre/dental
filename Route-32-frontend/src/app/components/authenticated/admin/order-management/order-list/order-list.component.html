@@ -1,0 +1,61 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+  <div class="page-header">
+    <h2 class="font-lora">List of Sales</h2>
+  </div>
+
+  <div class="card">
+    <div class="search-page-section p-3">
+      <div class="col-md-6 p-1">
+        <div class="icon-input-search">
+          <span class="input-icon-search">
+            <i class="material-icons">search</i>
+          </span>
+          <input type="text" name="search" id="search" class="form-control" placeholder="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="paginator-height">
+        <mat-paginator style="background-color: inherit" [length]="100" showFirstLastButtons="true" [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="table-container">
+    <table class="gap table">
+      <thead>
+        <tr class="sticky">
+          <th class="red" *ngFor="let column of displayedColumns">
+            {{ column }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="" *ngFor="let row of orderList">
+            <td>{{ row.id }}</td>
+            <td>{{ row.consumerName }}</td>
+            <td class="">{{ row.total }}</td>
+            <td class="">
+              <ng-container *ngIf="row.isCash; else online">
+                CASH
+              </ng-container>
+              <ng-template #online>
+                ONLINE
+              </ng-template>
+            </td>
+            <td>{{ row.createdAt | date: 'dd-MM-yy, HH:mm' }}</td>
+            <td class="last-column">{{ row.org.businessName }}</td>
+            <td class="action-column">
+              <span class="material-symbols-outlined"
+                [routerLink]="['/admin/order-management/view/', row.id]">
+                visibility
+              </span>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

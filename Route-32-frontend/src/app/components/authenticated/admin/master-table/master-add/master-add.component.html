@@ -1,0 +1,35 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora">{{isEdit ? 'Update': 'Add'}} Setting</h2>
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2">
+                    <label for="">Information</label>
+                </div>
+            </div>
+            <div [formGroup]="masterForm" class="row">
+                <div formArrayName="masterArray">
+                    <div class="row" *ngFor="let row of masterArray.controls; let i = index" [formGroupName]="i">
+                        <div class="col-md-6 form-group p-3">
+                            <label class="form-label" for="">Key</label>
+                            <input class="form-control" type="text" formControlName="paramKey">
+                        </div>
+                        <div class="col-md-6 form-group p-3">
+                            <label class="form-label" for="">Value</label>
+                            <input class="form-control" type="text" formControlName="paramValue"
+                                [ngClass]="{'is-invalid': masterControl(i,'paramValue')?.invalid && (masterControl(i,'paramValue')?.touched || masterControl(i,'paramValue')?.dirty)}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="updateMaster()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

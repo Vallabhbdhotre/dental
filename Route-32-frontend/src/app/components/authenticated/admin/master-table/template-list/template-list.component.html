@@ -1,0 +1,49 @@
+<div class="card p-2" style="background-color: inherit; border: 0px">
+    <div class="page-header">
+        <h2 class="font-lora">Email Template</h2>
+    </div>
+
+    <div class="card">
+        <div class="search-page-section p-2">
+            <div class="input-container">
+                <input type="text" name="search" id="search" class="form-control theme-input"
+                    placeholder="Search Template" style="height: 48px" />
+                <span class="material-symbols-outlined pointer">search</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <div class="paginator-height">
+                <mat-paginator style="border-radius: 8px; background-color: inherit" [length]="total"
+                    showFirstLastButtons [pageSizeOptions]="[5, 10, 25, 100]" (page)="onPageChange($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
+        <table class="gap table">
+            <thead>
+                <tr class="sticky">
+                    <th class="red" *ngFor="let column of displayedColumns">{{ column }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of templateList">
+                    <td>{{ row.templateCode }}</td>
+                    <td>{{ row.templateKey }}</td>
+                    <td>{{ row?.updatedDate | date: 'dd-MM-yy' }}</td>
+                    <td class="last-column">
+                        {{ row.updatedBy?.emailId.split(' ').slice(0, 5).join(' ') }}
+                    </td>
+                    <td class="action-column">
+                        <span class="material-symbols-outlined" [routerLink]="['/admin/master/template-view/', row.id]"> visibility </span>
+                        <span class="material-symbols-outlined" [routerLink]="['/admin/master/template-edit/', row.id]">
+                            edit </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

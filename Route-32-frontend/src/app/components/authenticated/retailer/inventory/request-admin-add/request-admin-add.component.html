@@ -1,0 +1,97 @@
+<div class="p-2" style="background-color: inherit;">
+    <h2 class="font-lora"> Request Stock</h2>
+    <!-- {{isEdit ? 'Update': 'Add'}} -->
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-2"><label for=""><b style="font-size: larger;">Request Information</b></label></div>
+                <!-- *ngIf="!isView" -->
+                <div class="col-md-4">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <!-- <div [formGroup]="requestForm">
+                <div formArrayName="requestDatas" class="row">
+                    <div class="row" *ngFor="let req of requestDataArray.controls; index as i" [formGroupName]="i">
+                        <div class="col-md-6 p-3" formGroupName="product">
+                            <label class="form-label" for="">Product</label>
+                            <mat-select formControlName="id" class="form-control" (selectionChange)="validateProducts(i)"
+                            [ngClass]="{'is-invalid': requestData(i, 'product')?.invalid && (requestData(i, 'product')?.touched || requestData(i, 'product')?.dirty)}">
+                                <mat-option *ngFor="let product of productList" [value]="product.id">
+                                    {{ product.name }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+                        <div class="col-md-3 p-3">
+                            <label class="form-label" for="">Quantity</label>
+                            <input class="form-control" type="number" formControlName="quantity"
+                            [ngClass]="{'is-invalid': requestData(i, 'quantity')?.invalid && (requestData(i, 'quantity')?.touched || requestData(i, 'quantity')?.dirty)}">
+                        </div>
+                        <div *ngIf="requestDataArray.length > 1" class="col-md-3 p-3">
+                            <span class="material-symbols-outlined" (click)="removeProduct(i)"> delete </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="add-btn" type="submit" (click)="addStock()">
+                        <i class="material-icons">add</i>
+                        Add another row
+                    </button>
+                </div>
+            </div> -->
+
+            <div [formGroup]="requestForm" class="col-md-12 form-group p-3">
+                <div class="row">
+                    <div class="col-md-6">
+                        Select Product
+                    </div>
+                    <div class="col-md-3">
+                        Enter Quantity
+                    </div>
+                </div>
+
+                <div formArrayName="requestDatas" class="row">
+                    <div class="row" *ngFor="let po of requestDataArray.controls; let i=index" [formGroupName]="i">
+                        <div formGroupName="product" class="col-md-6 p-3">
+                            <mat-select (selectionChange)="validateProducts(i)" formControlName="id" class="form-control" multiple="false"
+                                [ngClass]="{'is-invalid': po.get('product')?.invalid && (this.requestDataArray.at(i).get('product')?.touched || this.requestDataArray.at(i).get('product')?.dirty )}">
+                                <mat-option *ngFor="let product of productList" [value]="product.id">
+                                    {{ product.name }}
+                                </mat-option>
+                            </mat-select>
+                        </div>
+
+                        <div class="col-md-3 p-3">
+                            <input formControlName="quantity" class="form-control" type="number"
+                            [ngClass]="{'is-invalid': po.get('quantity')?.invalid && (this.requestDataArray.at(i).get('quantity')?.touched || this.requestDataArray.at(i).get('quantity')?.dirty )}">
+                        </div>
+
+                        <div *ngIf="requestDataArray.length > 1" class="col-md-3 p-3">
+                            <span class="material-symbols-outlined" (click)="removeProduct(i)"> delete </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button class="add-button" type="submit" (click)="addStock()">
+                        <i class="material-icons">add</i>
+                        Add another row
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div class="col-md-6 p-3">
+                    <button class="submit-btn" (click)="createRequest()">Submit</button>
+                </div>
+            </div>
+            <!-- *ngIf="!isEdit" -->
+        </div>
+    </div>
+</div>

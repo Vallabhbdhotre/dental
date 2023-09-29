@@ -1,0 +1,64 @@
+<div *ngIf="saleObj != null" class="card p-2" style="background-color: inherit; border: 0px">
+  <div class="page-header">
+      <h2 class="font-lora">Sale Details</h2>
+  </div>
+
+  <div class="card">
+      <div class="search-page-section p-3">
+          <div class="row">
+              <div class="col-md-3 form-group">
+                  <strong for="" class="form-label h2-roboto">Customer Name</strong> <br>
+                  <small for="">{{ saleObj.consumerName }}</small>
+              </div>
+              <div class="col-md-3 form-group">
+                  <strong for="" class="form-label h2-roboto">Customer Number</strong> <br>
+                  <small for="">{{ saleObj.consumerMobile }}</small>
+              </div>
+              <div class="col-md-3 form-group">
+                  <strong for="" class="form-label h2-roboto">Sold By</strong> <br>
+                  <small for="">{{ saleObj.org.businessName }}</small>
+              </div>
+              <div class="col-md-3 form-group">
+                  <strong for="" class="form-label h2-roboto">Order Amount</strong><br>
+                  <small for="">{{ saleObj.total | currency:'INR':'symbol':'1.2-2' }}</small>
+              </div>
+              <div class="col-md-3 form-group mt-4">
+                  <strong for="" class="form-label h2-roboto">Mode of payment</strong><br>
+                  <small for="" *ngIf="saleObj.isCash; else online">
+                      CASH
+                  </small>
+                  <ng-template #online>
+                      ONLINE
+                  </ng-template>
+              </div>
+              <div class="col-md-3 form-group mt-4">
+                  <strong for="" class="form-label h2-roboto">Created on</strong><br>
+                  <small for="">{{ saleObj.createdAt | date: 'dd-MM-yy HH:mm' }}</small>
+              </div>
+              <div class="col-md-4 form-group mt-4">
+                  <strong for="" class="form-label h2-roboto">Created by</strong><br>
+                  <small for="">{{ saleObj.createdBy.emailId }}</small>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="table-container mt-1">
+      <table class="gap table">
+          <thead>
+              <tr class="sticky">
+                  <th class="red" *ngFor="let column of displayedColumns">
+                      {{ column }}
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="" *ngFor="let row of orderDetails">
+                  <td>{{ row.product.name }}</td>
+                  <td>{{ row.productBarcodes.length }}</td>
+                  <td >{{ row.salePrice }}</td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>

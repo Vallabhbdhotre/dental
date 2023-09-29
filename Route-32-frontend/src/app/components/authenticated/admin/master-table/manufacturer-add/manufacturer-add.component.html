@@ -1,0 +1,122 @@
+<div class="p-2" style="background-color: inherit;">
+    <!-- <h2 class="font-lora">{{isEdit ? 'Update': 'Add'}} Manufacturer </h2> -->
+    <h2 class="font-lora" *ngIf="!isView">{{isEdit ? 'Update': 'Add'}} Manufacturer</h2>
+    <h2 class="font-lora" *ngIf="isView">View Manufacturer</h2>
+
+
+    <div class="form-container" style="background-color: inherit; border-radius: 15px; border: 1px solid #C1272D;">
+        <div class="card mt-2 p-4" style="background-color: inherit; border: 0px;">
+
+            <div class="row justify-content-start" style="display:flex; width:100%;">
+                <div class="col-md-3"><label for=""><b style="font-size: larger;">Manufacturer Information</b></label></div>
+                <div class="col-md-2">
+                    <label for="">(<a class="pointer red" (click)="clearForm()">Clear form</a>)</label>
+                </div>
+            </div>
+
+            <div [formGroup]="manufacurerForm" class="row">
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Vendor Name</label>
+                    <input class="form-control" type="text" formControlName="fullName"
+                        [ngClass]="{'is-invalid': this.control['fullName'].invalid && (this.control['fullName'].touched || this.control['fullName'].dirty)}">
+                </div>
+
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Business Name</label>
+                    <input class="form-control" type="text" formControlName="businessName"
+                        [ngClass]="{'is-invalid': this.control['businessName'].invalid && (this.control['businessName'].touched || this.control['businessName'].dirty)}">
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Contact Number</label>
+                    <input class="form-control" type="number" formControlName="mobile"
+                        [ngClass]="{'is-invalid': this.control['mobile'].invalid && (this.control['mobile'].touched || this.control['mobile'].dirty)}">
+                </div>
+
+                <div class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Email ID</label>
+                    <input class="form-control" type="email" formControlName="email"
+                        [ngClass]="{'is-invalid': this.control['email'].invalid && (this.control['email'].touched || this.control['email'].dirty)}">
+                </div>
+
+                <div formGroupName="address" class="col-md-6 form-group p-3">
+                    <label class="form-label" for="">Pincode</label>
+                    <input class="form-control" type="text" formControlName="pincode" (change)="fetchAddressByPinCode()"
+                        [ngClass]="{'is-invalid': this.addressControl['pincode'].invalid && (this.addressControl['pincode'].touched || this.addressControl['pincode'].dirty)}">
+                </div>
+
+                <div formGroupName="address" class="col-md-6 form-group p-3">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">House no./ Plot no.</label>
+                            <input class="form-control" type="text" formControlName="plotNo">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">Appartment no./ Building no.</label>
+                            <input class="form-control" type="text" formControlName="apartmentNo">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div formGroupName="address" class="col-md-6 p-3">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">Area / Street / Village </label>
+                            <input class="form-control" type="text" formControlName="area" list="areas">
+                            <datalist id="areas">
+                                <option *ngFor="let city of areaList" [value]="city">
+                                    {{ city }}
+                                </option>
+                            </datalist>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">Landmark</label>
+                            <input class="form-control" type="text" formControlName="landmark">
+                        </div>
+                    </div>
+                </div>
+
+                <div formGroupName="address" class="col-md-6 p-3">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">City/ Town</label>
+                            <input class="form-control" type="text" formControlName="city"
+                                [ngClass]="{'is-invalid': this.addressControl['city'].invalid && (this.addressControl['city'].touched || this.addressControl['city'].dirty)}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">District</label>
+                            <input class="form-control" type="text" formControlName="district"
+                                [ngClass]="{'is-invalid': this.addressControl['district'].invalid && (this.addressControl['district'].touched || this.addressControl['district'].dirty)}">
+                        </div>
+                    </div>
+                </div>
+
+                <div formGroupName="address" class="col-md-6 p-3">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">State</label>
+                            <input class="form-control" type="text" formControlName="state"
+                                [ngClass]="{'is-invalid': this.addressControl['state'].invalid && (this.addressControl['state'].touched || this.addressControl['state'].dirty)}">
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label class="form-label" for="">Country</label>
+                            <input class="form-control" type="text" formControlName="country"
+                                [ngClass]="{'is-invalid': this.addressControl['country'].invalid && (this.addressControl['country'].touched || this.addressControl['country'].dirty)}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 p-3">
+                    <button class="cancel-btn" (click)="cancelBtn()">Cancel</button>
+                </div>
+                <div class="col-md-6 p-3" *ngIf="!isView">
+                    <button class="submit-btn" (click)="submit()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
